@@ -1,0 +1,4 @@
+include 'dummy-service-interface'
+include 'dummy-service-test'
+
+//includeBuild '../object-oriented-api-test'

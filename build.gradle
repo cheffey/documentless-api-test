@@ -1,0 +1,33 @@
+subprojects {
+    apply plugin: 'java'
+    group = 'core.demo'
+    version = '1.0.0'
+
+    repositories {
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        maven {
+            url 'https://neowu.github.io/maven-repo/'
+            content {
+                includeGroupByRegex 'core\\.framework.*'
+            }
+        }
+    }
+}
+
+def coreNGVersion = '7.0.0'
+
+project(':dummy-service-interface') {
+    dependencies {
+        implementation "core.framework:core-ng-api:${coreNGVersion}"
+    }
+}
+
+project(':dummy-service-test') {
+//    apply plugin: 'java'
+    dependencies {
+        implementation "core.framework:core-ng:${coreNGVersion}"
+        implementation "core.framework:core-ng-api:${coreNGVersion}"
+        implementation "junit:junit:4.12"
+        implementation project(':dummy-service-interface')
+    }
+}
